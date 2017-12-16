@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Generated with https://github.com/google/shaka-packager version v1.6.2-6b98f0d-release-->
+<MPD xmlns="urn:mpeg:dash:schema:mpd:2011" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xsi:schemaLocation="urn:mpeg:dash:schema:mpd:2011 DASH-MPD.xsd" xmlns:cenc="urn:mpeg:cenc:2013" profiles="urn:mpeg:dash:profile:isoff-on-demand:2011" minBufferTime="PT2S" type="static" mediaPresentationDuration="PT3185.8S">
+  <Period id="0">
+    <AdaptationSet id="0" contentType="video" maxWidth="1920" maxHeight="1080" frameRate="12800/512" subsegmentAlignment="true" par="16:9">
+      <Representation id="0" bandwidth="597213" codecs="avc1.42c01e" mimeType="video/mp4" sar="1:1" width="640" height="360">
+        <BaseURL>google__360p.mp4</BaseURL>
+        <SegmentBase indexRange="816-4171" timescale="12800">
+          <Initialization range="0-815"/>
+        </SegmentBase>
+      </Representation>
+      <Representation id="2" bandwidth="989671" codecs="avc1.42c01e" mimeType="video/mp4" sar="1280:1281" width="854" height="480">
+        <BaseURL>google__480p.mp4</BaseURL>
+        <SegmentBase indexRange="836-4191" timescale="12800">
+          <Initialization range="0-835"/>
+        </SegmentBase>
+      </Representation>
+      <Representation id="3" bandwidth="1480991" codecs="avc1.42c01e" mimeType="video/mp4" sar="1:1" width="1280" height="720">
+        <BaseURL>google__720p.mp4</BaseURL>
+        <SegmentBase indexRange="814-4169" timescale="12800">
+          <Initialization range="0-813"/>
+        </SegmentBase>
+      </Representation>
+      <Representation id="4" bandwidth="2949183" codecs="avc1.42c01e" mimeType="video/mp4" sar="1:1" width="1920" height="1080">
+        <BaseURL>google__1080p.mp4</BaseURL>
+        <SegmentBase indexRange="816-4171" timescale="12800">
+          <Initialization range="0-815"/>
+        </SegmentBase>
+      </Representation>
+    </AdaptationSet>
+    <AdaptationSet id="1" contentType="audio" lang="en" subsegmentAlignment="true">
+      <Representation id="1" bandwidth="57708" codecs="mp4a.40.2" mimeType="audio/mp4" audioSamplingRate="44100">
+        <AudioChannelConfiguration schemeIdUri="urn:mpeg:dash:23003:3:audio_channel_configuration:2011" value="1"/>
+        <BaseURL>google__audio.mp4</BaseURL>
+        <SegmentBase indexRange="749-4608" timescale="44100">
+          <Initialization range="0-748"/>
+        </SegmentBase>
+      </Representation>
+    </AdaptationSet>
+  </Period>
+</MPD>
