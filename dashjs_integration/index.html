@@ -16,7 +16,7 @@
 
 <body>
 
-    <div class="container bg-dark">
+    <!-- <div class="container bg-dark">
         <div class="row ">
             <div class="col-sm-6 p-1 ">
                 <video class=" float-right bottom-align-text" id="videoPlayer" controls></video>
@@ -37,13 +37,15 @@
             </div>
         </div>
 
-    </div>
+    </div> -->
+
+    <div id='root'></div>
 
     <script src="js/jquery-3.2.1.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/dash.all.min.js"></script>
-    <script>
-    let url = "manifest.mpd";
+    <!-- <script>
+    let url = "videos/manifest.mpd";
         (function () {
             player = dashjs.MediaPlayer().create();
             player2 = dashjs.MediaPlayer().create();
@@ -53,16 +55,12 @@
             player2.initialize(document.querySelector("#videoPlayer2"), url, false);
             player3.initialize(document.querySelector("#videoPlayer3"), url, false);
             player4.initialize(document.querySelector("#videoPlayer4"), url, false);
-            console.log(players.push(player));
-            console.log(players.push(player2));
-            console.log(players.push(player3));
-            console.log(players.push(player4));
-            console.log(players)
         }
         )();
 
-    </script>
+    </script> -->
     <script src="js/custom_player.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,47 @@
+#root {
+    margin: 20px;
+    display: grid;
+    grid-template-areas: "v1 v2"
+                            "v3 v4"
+                            "bar bar";
+    align-items: center;
+    
+}
+/* 
+.video {
+    transition: transform 3s,
+} */
+/* The animation code */
+/* @keyframes example {
+    from {transform: scale(1);}
+    to {transform: scale(1.4);}
+} */
+
+/* video:hover {
+    animation-name: example;
+    animation-duration: 2s;
+} */
+
+
+#video0 {
+    grid-area: v1;
+}
+
+#video1 {
+    grid-area: v2;
+}
+#video2 {
+    grid-area: v3;
+}
+#video3 {
+    grid-area: v4;
+}
+
+.barWrapper {
+    grid-area: bar;
+    display: flex;
+}
+
+.btn {
+    background-color: grey;
+}
