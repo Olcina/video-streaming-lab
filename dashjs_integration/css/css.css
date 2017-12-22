@@ -146,7 +146,7 @@
 
 #outer-box #inner-box {
   background: rgba(230, 90, 90, 0.699);
-  height: 50%;
+  height: 100%;
   width: 100%;
   opacity: 0;
   bottom: 0;
@@ -156,11 +156,13 @@
   transition: opacity .5s;
 }
 
-#outer-box #inner-box p {
-  color: #fff;
-  line-height: 150px;
-  font-family: 'arial';
-  text-align: center;
+#outer-box #inner-box #button-bar {
+  background: rgba(99, 90, 230, 0.699);
+  height: auto;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  position: absolute;
 }
 
 #outer-box:hover #inner-box {
