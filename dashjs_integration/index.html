@@ -4,12 +4,12 @@
 <head>
     <title>Dash.js Rocks</title>
 
-    <style>
+    <!-- <style>
         video {
             width: 380px;
             height: auto;
         }
-    </style>
+    </style> -->
     <link rel="stylesheet" href="css/css.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
@@ -39,28 +39,102 @@
 
     </div> -->
 
-    <div id='root'></div>
+    <!-- <div id='root'>
+        <div class="container">
+            <div class="area4">        
+                <div class="video-container1">
+                    <video id="video0"></video>
+                </div>
+                <div class="video-container2">
+                    <video id="video1"></video>
+                </div>
+                <div class="video-container3">
+                    <video id="video2"></video>
+                </div>
+                <div class="video-container4">
+                    <video id="video3"></video>
+                </div>
+            </div>
+            <div class="barWrapper">
+                <button id="playButton">Play</button>
+                <div id="timeSpan"></div>
+                <button id="muteButton">Mute</button>
+            </div>
+            <div class="videoSelect">
+                <button id="add1">add1</button>
+                <btton id="add2">add2</button>
+                <button id="add3">add3</button>
+                <button id="add4">add4</button>
+            </div>
+        </div>
+    </div> -->
+<div class="container">
+
+
+    <div class="grid">
+        <div class="video1">
+            <div id="outer-box"> 
+                <video class="video-pos" id="video0"></video>
+                <div id="inner-box">
+                    <p>the overlay</p>
+                </div>
+            </div>
+        </div>
+        <div class="video2">
+            <div id="outer-box">
+                <video  class="video-pos" id="video1"></video>
+                <div id="inner-box">
+                    <p>the second  overlay</p>
+                </div>
+            </div>
+        </div>
+        <div class="video3">
+            <div id="outer-box">
+
+            <video  class="video-pos" id="video2"></video>
+            <div id="inner-box">
+            <p>the thrid overlay</p>
+        </div>
+        </div>
+        </div>
+        <div class="video4">
+            <div id="outer-box">
+            <video  class="video-pos" id="video3"></video>
+            <div id="inner-box">    
+            <p>the forth overlay</p>
+        </div>
+        </div>
+        </div>
+        <div class="barContainer">
+
+        
+            <button id="playButton">Play</button>
+            <button id="timeSpan"></button>
+                    <div class="container">
+                        <div class="progress" id='prog'>
+                    <div  class="progress-bar" id='prog2' role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+                        <span class="sr-only">70% Complete</span>
+                    </div>
+                </div>
+            </div>
+                    <button id="muteButton">Mute</button>
+        </div>
+        <div class="selectorContainer">
+            <button id="add1">add1</button>
+            <button id="add2">add2</button>
+            <button id="add3">add3</button>
+            <button id="add4">add4</button>
+        </div>
+        <div class="sidebar">Sidebar</div>
+    </div>
+</div>
 
     <script src="js/jquery-3.2.1.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/dash.all.min.js"></script>
-    <!-- <script>
-    let url = "videos/manifest.mpd";
-        (function () {
-            player = dashjs.MediaPlayer().create();
-            player2 = dashjs.MediaPlayer().create();
-            player3 = dashjs.MediaPlayer().create();
-            player4 = dashjs.MediaPlayer().create();
-            player.initialize(document.querySelector("#videoPlayer"), url, false);
-            player2.initialize(document.querySelector("#videoPlayer2"), url, false);
-            player3.initialize(document.querySelector("#videoPlayer3"), url, false);
-            player4.initialize(document.querySelector("#videoPlayer4"), url, false);
-        }
-        )();
-
-    </script> -->
-    <script src="js/custom_player.js"></script>
+    <!-- <script src="js/custom_player.js"></script> -->
     <script src="js/main.js"></script>
+
 </body>
 
 </html>

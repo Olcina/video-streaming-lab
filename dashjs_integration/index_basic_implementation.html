@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Dash.js Rocks</title>
+
+    <style>
+        video {
+            width: 380px;
+            height: auto;
+        }
+    </style>
+    <link rel="stylesheet" href="css/css.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <video id="videoPlayer"></video>
+    </div>
+
+
+
+
+    <script src="js/jquery-3.2.1.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/dash.all.min.js"></script>
+    <script>
+    let url = "videos/manifest.mpd";
+        (function () {
+            player = dashjs.MediaPlayer().create();
+            player.initialize(document.querySelector("#videoPlayer"), url, false);
+        }
+        )();
+
+    </script>
+    <!-- <script src="js/custom_player.js"></script> -->
+    <!-- <script src="js/main.js"></script> -->
+
+</body>
+
+</html>

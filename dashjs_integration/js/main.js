@@ -2,12 +2,14 @@
 
 class VideoController {
     constructor(root_name = 'root',
+                globalTime = 0,
                 controlerMuted = true,
                 controlerPlaying = false) {
         this.players = [];
         // this.player = dashjs.MediaPlayer().create()
         this.root_name = root_name;
-        this.init();
+        this.globalTime = globalTime;
+        // this.init();
         this.controlerMuted = controlerMuted;
     }
 
@@ -16,37 +18,37 @@ class VideoController {
         //  - 4 video tags
         const n = 4;
         for (let i = 0; i < n; i++) {
-            let base_element = document.createElement(`video`);
-            base_element.setAttribute('id', `video${i}`);
-            base_element.setAttribute('controls', '');
-            document.getElementById(this.root_name).appendChild(base_element);
+        //     let base_element = document.createElement(`video`);
+        //     base_element.setAttribute('id', `video${i}`);
+        //     base_element.setAttribute('controls', '');
+        //     document.getElementById(this.root_name).appendChild(base_element);
 
             this.players.push(dashjs.MediaPlayer().create())
         }
-        // bar wrapper
-        let barWrapper = document.createElement('div')
-        barWrapper.setAttribute('id', 'barWrapper')
-        let bar = document.getElementById(this.root_name).appendChild(barWrapper)
+        // // bar wrapper
+        // let barWrapper = document.createElement('div')
+        // barWrapper.setAttribute('id', 'barWrapper')
+        // let bar = document.getElementById(this.root_name).appendChild(barWrapper)
 
-        // play button
-        let play_button  = document.createElement('div')
-        play_button.setAttribute('id', 'playButton')
-        let playbtn = document.getElementById('barWrapper').appendChild(play_button);
-        playbtn.className = 'btn';
-        playbtn.innerText = 'Play';
+        // // play button
+        // let play_button  = document.createElement('div')
+        // play_button.setAttribute('id', 'playButton')
+        // let playbtn = document.getElementById('barWrapper').appendChild(play_button);
+        // playbtn.className = 'btn';
+        // playbtn.innerText = 'Play';
 
-        let time_span = document.createElement('div')
-        time_span.setAttribute('id', 'timeSpan')
-        let timeSpan = document.getElementById('barWrapper').appendChild(time_span);
-        timeSpan.className = 'btn'
-        timeSpan.innerText = '0';
-        //  pause button 
+        // let time_span = document.createElement('div')
+        // time_span.setAttribute('id', 'timeSpan')
+        // let timeSpan = document.getElementById('barWrapper').appendChild(time_span);
+        // timeSpan.className = 'btn'
+        // timeSpan.innerText = '0';
+        // //  pause button 
         
-        let mute_button = document.createElement('div')
-        mute_button.setAttribute('id', 'muteButton')
-        let mutebtn = document.getElementById('barWrapper').appendChild(mute_button);
-        mutebtn.className = 'btn';
-        mutebtn.innerText = 'Mute';
+        // let mute_button = document.createElement('div')
+        // mute_button.setAttribute('id', 'muteButton')
+        // let mutebtn = document.getElementById('barWrapper').appendChild(mute_button);
+        // mutebtn.className = 'btn';
+        // mutebtn.innerText = 'Mute';
         // let html_to_root = `<video id='video1'></video>
         //                     <video id='video2'></video>
         //                     <video id='video3'></video>
@@ -58,7 +60,13 @@ class VideoController {
 
 
     add(slot, url) {
-        this.players[slot].initialize(document.querySelector(`#video${slot}`),url, false)
+        let html_vid_element = document.querySelector(`#video${slot}`)
+        this.players[slot].initialize(html_vid_element,url, false)
+        return new Promise((resolve,reject) => {
+            if (this.players[slot].isReady()) {
+                resolve(console.log(`ready vid${slot}`));
+            }
+     })
     }
     pause() {
         for (const player of this.players) {
@@ -70,7 +78,7 @@ class VideoController {
     tooglePlay() {
         // set state of the players to the controlerPlaying state
         for (const player of this.players) {
-            if (this.controlerPlaying) {
+            if (!this.controlerPlaying) {
                 try {
                     player.play();
                 } catch (e) {}
@@ -101,7 +109,27 @@ class VideoController {
         };
         // change the global muted state
         this.controlerMuted = !this.controlerMuted;
-    }    
+    }
+    forward10(){
+        this.globalTime +=10;
+        for (const player of this.players) {
+            try {
+                player.seek(this.globalTime);
+            } catch (e) { }
+        };
+    }
+    backward10() {
+        if (this.globalTime <=10) {
+            this.globalTime = 0;
+        } else {
+            this.globalTime -= 10;
+        }
+        for (const player of this.players) {
+            try {
+                player.seek(this.globalTime);
+            } catch (e) { }
+        };
+    }
 };
 
 const controler = new VideoController;
@@ -109,15 +137,30 @@ let url = "videos/manifest.mpd";
 
 console.log(controler.players)
 
-controler.add(0,url)
-controler.add(1, url)
-controler.add(2, url)
-controler.add(3, url)
-// console.log(controler.players[1].isReady())
+// call load videos when document == ready
+ready().then(loadVideos);
+// create the ready promise
+function ready() {
+    return new Promise(function (resolve) {
+        if (document.readyState === "complete") {
+            resolve();
+        } else {
+            document.addEventListener("DOMContentLoaded", resolve);
+        }
+    });
+}
 
-window.setTimeout(function(){
-    // controler.play();
-},2000)
+function loadVideos() {
+    console.log(controler)
+    console.log(url)
+    console.log(document.querySelector(`#video1`))
+    controler.init();
+    controler.add(0, url)
+    controler.add(1, url)
+    controler.add(2, url)
+    controler.add(3, url)
+    console.log(controler.players)
+}
 
 
 window.addEventListener("keydown", function (event) {
@@ -144,11 +187,11 @@ window.addEventListener("keydown", function (event) {
         case "ArrowLeft":
             // Do something for "left arrow" key press.
 
-            controler.seek(200);
+            controler.backward10();
             break;
         case "ArrowRight":
             // Do something for "right arrow" key press.
-            controler.seek(1000);
+            controler.forward10()
             break;
         case " ":
             // Do something for "espace" key press.
@@ -169,6 +212,7 @@ window.addEventListener("keydown", function (event) {
 
 function watchers() {
     document.getElementById('timeSpan').innerText = `${controler.players[0].time()}/${controler.players[0].duration()}`
+    controler.globalTime = controler.players[0].time();
     document.getElementById('playButton').addEventListener('click', function(e){
         console.log('played')
         controler.tooglePlay();
@@ -183,10 +227,41 @@ function watchers() {
     }, false) 
 }
 
+document.getElementById('add1').addEventListener('click', function (e) {
+    controler.add(0,url);   
+},false)
+document.getElementById('add2').addEventListener('click', function (e) {
+    controler.add(1, url);
+}, false)
+document.getElementById('add3').addEventListener('click', function (e) {
+    controler.add(2, url);
+}, false)
+document.getElementById('add4').addEventListener('click', function (e) {
+    controler.add(3, url);
+}, false)
+
 window.setInterval(function() {
         watchers();}
     ,1000);
 
-    // document.addEventListener('mousedown', function(){
-    //     console.log('mousedown');
-    // })
+
+document.getElementById('prog').addEventListener('click', function(e) {
+    console.log(e.pageX)
+    let x = e.pageX
+    let ele = document.getElementById('prog');
+    let ele2 = document.getElementById('prog2');
+    let ele_x = ele.getBoundingClientRect()['left'];
+    let ele_width = ele.getBoundingClientRect()['width'];
+    console.log(x, ele_x,ele_width)
+    let percentage =(x-ele_x)/ele_width
+    console.log(ele2.style[0].width)
+    ele2.style = `width:${percentage*100}%`
+
+    let time = controler.players[0].duration()*percentage;
+    console.log(time)
+
+    controler.globalTime = time;
+    controler.seek(time);
+    e.stopImmediatePropagation();
+})
+

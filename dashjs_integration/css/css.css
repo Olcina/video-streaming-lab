@@ -1,11 +1,32 @@
 #root {
-    margin: 20px;
-    display: grid;
+    /* margin: 20px; */
+    /* width: 90%; */
+    /* height: auto; */
+    text-align: center;
+    /* display: flex; */
+    width: 100%;
+    
+}
+
+.container {
+    max-width: 960px;
+    text-align: center;
+}
+
+.area1 {
+    grid-template-areas: "v1"
+}
+
+.area2 {
     grid-template-areas: "v1 v2"
+}
+.area4 {
+    background-color: grey;
+ display: grid;
+ /* width: 80%; */
+ grid-template-areas: "v1 v2"
                             "v3 v4"
                             "bar bar";
-    align-items: center;
-    
 }
 /* 
 .video {
@@ -23,25 +44,126 @@
 } */
 
 
-#video0 {
+.video-container1 {
     grid-area: v1;
+    width: 100%;
+    
 }
 
-#video1 {
+.video-container2 {
     grid-area: v2;
+    width: 100%;
 }
-#video2 {
+.video-container3 {
+    
     grid-area: v3;
+    width: 100%;
 }
-#video3 {
+.video-container4 {
     grid-area: v4;
+    width: 100%;
 }
 
-.barWrapper {
-    grid-area: bar;
-    display: flex;
+.hide {
+    opacity: 0;
 }
+
+
+.nowidth {
+    width: 0%;
+}
+.expand {
+    grid-area: "v1 v2"
+                "v3 v4";
+}
+
 
 .btn {
     background-color: grey;
+}
+
+/* grid css */
+.grid {
+    display: grid;
+    grid-template-columns: 3;
+    grid-template-rows: 5;
+}
+.grid2 {
+    display: grid;
+    grid-template-columns: 2;
+    grid-template-rows: 5;
+}
+.video1 {
+    background-color: aquamarine;
+    grid-row: 1;
+    grid-column: 1; 
+}
+.video2 {
+    background-color: aqua;
+    grid-row: 1;
+    grid-column: 2; 
+}
+.video3 {
+    background-color: blanchedalmond;
+    grid-row: 2;
+    grid-column: 1; 
+}
+.video4 {
+    background-color: azure;
+    grid-row: 2;
+    grid-column: 2; 
+}
+
+.barContainer {
+    background-color: grey;
+    grid-row: 3;
+    grid-column: 1/3;
+}
+
+.selectorContainer {
+    background-color: goldenrod;
+    grid-row: 4;
+    grid-column: 1/3;
+    align-content: center;
+}
+
+.sidebar {
+    background-color: gold;
+    grid-row: 1/5;
+    grid-column: 3;
+}
+
+
+/* overlay css */
+#outer-box {
+  position: relative;
+}
+
+#outer-box video {
+  width: 100%;
+  height: auto;
+}
+
+#outer-box #inner-box {
+  background: rgba(230, 90, 90, 0.699);
+  height: 50%;
+  width: 100%;
+  opacity: 0;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  padding: 0;
+  transition: opacity .5s;
+}
+
+#outer-box #inner-box p {
+  color: #fff;
+  line-height: 150px;
+  font-family: 'arial';
+  text-align: center;
+}
+
+#outer-box:hover #inner-box {
+  opacity: .9;
+  transition: opacity .5s;
 }
